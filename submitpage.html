@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Artwork | ArtGallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="submission.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">Picverse</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="submitpage.html" class="active">Submission</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+            </ul>
+            <div class="hamburger" aria-label="Open navigation" tabindex="0">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+  <!-- Submission Form Section -->
+  <section class="submission-container">
+    <div class="submission-header">
+      <h1 class="page-main-title">Submit Your Artwork</h1>
+      <p>Share your creative masterpiece with our community</p>
+    </div>
+
+    <div class="submission-form-container">
+      <form id="artSubmissionForm" class="submission-form" novalidate>
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email Address <span class="required">*</span></label>
+          <div class="input-wrapper">
+            <i class="fas fa-envelope icon"></i>
+            <input type="email" id="email" name="email" placeholder="Enter your email address">
+          </div>
+          <div class="error-message" id="emailError"></div>
+        </div>
+
+        <!-- Artwork Title Field -->
+        <div class="form-group">
+          <label for="title">Artwork Title <span class="required">*</span></label>
+          <div class="input-wrapper">
+            <i class="fas fa-heading icon"></i>
+            <input type="text" id="title" name="title" placeholder="Enter artwork title">
+          </div>
+          <div class="error-message" id="titleError"></div>
+        </div>
+
+        <!-- Description Field -->
+        <div class="form-group">
+          <label for="description">Description <span class="required">*</span></label>
+          <textarea id="description" name="description" rows="5" placeholder="Tell us about your artwork..."></textarea>
+          <div class="character-counter">
+            <span id="charCount">0</span>/500 characters
+          </div>
+          <div class="error-message" id="descriptionError"></div>
+        </div>
+
+        <!-- Tags Field -->
+        <div class="form-group">
+          <label for="tagInput">Tags <span class="required">*</span></label>
+          <div class="tag-input-container">
+            <div class="tag-wrapper" id="tagWrapper">
+              <!-- Tags will be added here dynamically -->
+            </div>
+            <input type="text" id="tagInput" placeholder="Add a tag and press Enter" autocomplete="off">
+          </div>
+          <input type="hidden" id="tags" name="tags">
+          <div class="tag-suggestions">
+            <span>Suggestions:</span>
+            <button type="button" class="tag-suggestion">Digital</button>
+            <button type="button" class="tag-suggestion">Painting</button>
+            <button type="button" class="tag-suggestion">Sketch</button>
+            <button type="button" class="tag-suggestion">3D</button>
+            <button type="button" class="tag-suggestion">Photography</button>
+          </div>
+          <div class="error-message" id="tagsError"></div>
+        </div>
+
+        <!-- File Upload Field -->
+        <div class="form-group">
+          <label for="artwork">Upload Artwork <span class="required">*</span></label>
+          <div class="upload-container">
+            <div class="upload-area" id="uploadArea">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Drag & drop your artwork here or click to browse</p>
+              <span class="file-info">Accepted formats: JPG, PNG, GIF (Max 10MB)</span>
+            </div>
+            <input type="file" id="artwork" name="artwork" class="file-input" accept="image/jpeg, image/png, image/gif">
+            <div class="preview-container" id="previewContainer">
+              <img id="imagePreview" src="#" alt="Preview">
+              <button type="button" class="remove-file" id="removeFile">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <div class="error-message" id="artworkError"></div>
+        </div>
+
+        <!-- AI Generated Radio Buttons -->
+        <div class="form-group">
+          <label>Is this AI-generated art? <span class="required">*</span></label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="aiYes" name="isAIGenerated" value="yes">
+              <label for="aiYes">Yes</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="aiNo" name="isAIGenerated" value="no">
+              <label for="aiNo">No</label>
+            </div>
+          </div>
+          <div class="error-message" id="aiGeneratedError"></div>
+        </div>
+
+        <!-- Terms and Conditions Checkbox -->
+        <div class="form-group">
+          <div class="checkbox-container">
+            <input type="checkbox" id="termsAgreement" name="termsAgreement">
+            <label for="termsAgreement">I agree to the <a href="#" class="terms-link">Terms and Conditions</a> and confirm this artwork is my original creation or I have permission to share it.</label>
+          </div>
+          <div class="error-message" id="termsError"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-buttons">
+          <button type="reset" class="reset-btn">Reset Form</button>
+          <button type="submit" class="submit-btn">Submit Artwork</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Success Modal -->
+  <div class="modal" id="successModal">
+    <div class="modal-content success-modal">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Submission Successful!</h2>
+      <p>Thank you for sharing your artwork with our community. Your submission is now being reviewed.</p>
+      <button class="view-gallery-btn">View Gallery</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-logo">
+        <h2>Picverse</h2>
+        <p>Discover and share amazing artwork</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="submitpage.html">Submit</a></li>
+            <li><a href="community.html">Community</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+            <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Copyright Information</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Picverse. Unauthorized use prohibited.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="submission.js"></script>
+</body>
+</html>
